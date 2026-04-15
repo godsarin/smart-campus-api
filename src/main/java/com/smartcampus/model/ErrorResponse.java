@@ -1,9 +1,4 @@
 package com.smartcampus.model;
-
-/**
- * Standardised error response returned by all Exception Mappers.
- * Ensures no raw Java stack traces are ever exposed to API consumers.
- */
 public class ErrorResponse {
 
     private int httpStatus;

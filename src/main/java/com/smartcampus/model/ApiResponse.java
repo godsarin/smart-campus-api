@@ -1,8 +1,4 @@
 package com.smartcampus.model;
-
-/**
- * Generic API response wrapper for consistent JSON structure across all endpoints.
- */
 public class ApiResponse<T> {
 
     private String status;
