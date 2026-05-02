@@ -1,8 +1,11 @@
 # Smart Campus Sensor & Room Management API
 
 Name: Sarin Pradhan
+---
 Student ID: w2083958
+---
 Module: 5COSC022W Client-Server Architectures
+---
 
 A robust, scalable RESTful API built with **JAX-RS (Jersey)** and an embedded **Grizzly HTTP server** for managing campus rooms and IoT sensors — part of the University of Westminster 5COSC022W Client-Server Architectures coursework.
 
