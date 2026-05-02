@@ -430,7 +430,9 @@ To solve this, the Smart Campus API uses a **`DataStore` singleton** with `stati
 
 ### Part 1.2 — The “Discovery” Endpoint  
 
-**Q: Why is Hypermedia (HATEOAS) considered a hallmark of advanced RESTful design? How does it benefit client developers compared to static documentation?**
+**Q: Why is the provision of “Hypermedia” (links and navigation within responses) considered a 
+hallmark of advanced RESTful design (HATEOAS)? How does this approach benefit client 
+developers compared to static documentation?**
 
 HATEOAS (Hypermedia as the Engine of Application State) means embedding navigable links inside API responses so clients can discover available actions dynamically, rather than relying on hard-coded URLs or external documentation.
 
