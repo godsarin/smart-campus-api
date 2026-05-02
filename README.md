@@ -412,7 +412,7 @@ curl -X POST http://localhost:8080/api/v1/sensors/TEMP-M01/readings \
 
 ---
 
-### Part 1.1 — JAX-RS Resource Lifecycle
+### Part 1: Service Architecture & Setup  
 
 **Q:  In your report, explain the default lifecycle of a JAX-RS Resource class. Is a
 new instance instantiated for every incoming request, or does the runtime treat it as a
@@ -428,7 +428,7 @@ To solve this, the Smart Campus API uses a **`DataStore` singleton** with `stati
 
 ---
 
-### Part 1.2 — HATEOAS
+### Part 1.2 — The “Discovery” Endpoint  
 
 **Q: Why is Hypermedia (HATEOAS) considered a hallmark of advanced RESTful design? How does it benefit client developers compared to static documentation?**
 
@@ -440,7 +440,8 @@ This benefits developers because it reduces the "out-of-band knowledge" needed t
 
 ---
 
-### Part 2.1 — Full Objects vs IDs in List Responses
+### Part 2 - Room Management 
+### 2.1 - RoomResource Implementation 
 
 **Q: When returning a list of rooms, what are the implications of returning only IDs versus full room objects? Consider network bandwidth and client side
 processing.**
@@ -451,7 +452,7 @@ Returning **full objects** costs more bandwidth per response but eliminates extr
 
 ---
 
-### Part 2.2 — DELETE Idempotency
+### Part 2.2 — RoomDeletion & Safety Logic 
 
 **Q:Is the DELETE operation idempotent in your implementation? Provide a detailed
 justification by describing what happens if a client mistakenly sends the exact same DELETE
@@ -466,7 +467,8 @@ The server **state** is identical after both calls — the room is absent in bot
 
 ---
 
-### Part 3.1 — @Consumes and Content-Type Mismatch
+### Part 3 —  Sensor Operations & Linking 
+### Part 3.1 —  Sensor Resource & Integrity  
 
 **Q: We explicitly use the @Consumes (MediaType.APPLICATION_JSON) annotation on
 the POST method. Explain the technical consequences if a client attempts to send data in
@@ -479,7 +481,7 @@ This is a key benefit of declarative annotations: input format validation is han
 
 ---
 
-### Part 3.2 — @QueryParam vs Path Segment for Filtering
+### Part 3.2 —  Filtered Retrieval & Search 
 
 **Q:  You implemented this filtering using @QueryParam. Contrast this with an alterna
 tive design where the type is part of the URL path (e.g., /api/vl/sensors/type/CO2). Why
@@ -495,7 +497,7 @@ REST convention distinguishes between **resource identification** (path segments
 Additionally, query parameters are idiomatic for search and filtering in HTTP; intermediaries (caches, proxies) understand this convention, and client libraries handle them consistently.
 
 ---
-
+### Part 4: Deep Nesting with Sub- Resources 
 ### Part 4.1 — Sub-Resource Locator Pattern
 
 **Q:  Discuss the architectural benefits of the Sub-Resource Locator pattern. How
@@ -515,7 +517,8 @@ The Sub-Resource Locator pattern (used in `SensorResource.getReadingsResource()`
 
 ---
 
-### Part 5.2 — HTTP 422 vs 404 for Missing References
+### Part 5 - Advanced Error Handling, Exception Mapping & Logging 
+### Part 5.2 - Dependency Validation (422 Unprocessable Entity) 
 
 **Q: Why is HTTP 422 often considered more semantically accurate than a standard
 404 whenthe issue is a missing reference inside a valid JSON payload? **
@@ -528,7 +531,7 @@ When a client POSTs a valid JSON sensor payload to `/api/v1/sensors` (a URI that
 
 ---
 
-### Part 5.4 — Risks of Exposing Stack Traces
+### Part 5.4 — The Global Safety Net (500) 
 
 **Q: From a cybersecurity standpoint, explain the risks associated with exposing
 internal Java stack traces to external API consumers. What specific information could an
@@ -548,7 +551,7 @@ The `GlobalExceptionMapper` solves this by logging the full stack trace **server
 
 ---
 
-### Part 5.5 — JAX-RS Filters vs Manual Logging
+### Part 5.5 — API Request & Response Logging Filters 
 
 **Q: Why is it advantageous to use JAX-RS filters for cross-cutting concerns like
 logging, rather than manually inserting Logger.info() statements inside every single re
